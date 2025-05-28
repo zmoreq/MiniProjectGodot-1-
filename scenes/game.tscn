@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=4 uid="uid://bx71ayt52r48c"]
 
-[ext_resource type="PackedScene" uid="uid://w1a1jo5wmw3o" path="res://scenes/Player.tscn" id="1_uwrxv"]
-[ext_resource type="Texture2D" uid="uid://bd3jg5xsw3ei0" path="res://sprites/map.png" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://w1a1jo5wmw3o" path="res://scenes/Player.tscn" id="1_qbsmt"]
+[ext_resource type="Texture2D" uid="uid://bd3jg5xsw3ei0" path="res://sprites/map.png" id="2_cpr0p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
-texture = ExtResource("2_yqjtg")
+texture = ExtResource("2_cpr0p")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -52,7 +52,7 @@ texture = ExtResource("2_yqjtg")
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbhrr"]
-texture = ExtResource("2_yqjtg")
+texture = ExtResource("2_cpr0p")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -102,7 +102,7 @@ sources/0 = SubResource("TileSetAtlasSource_lbhrr")
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_uwrxv")]
+[node name="Player" parent="." instance=ExtResource("1_qbsmt")]
 z_index = 1
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
