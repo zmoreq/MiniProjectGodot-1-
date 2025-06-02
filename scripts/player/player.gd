@@ -1,18 +1,15 @@
 extends CharacterBody2D
 class_name Player
 
+@export var health := 100
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-const BULLET = preload("res://scenes/slime_bullet.tscn")
+@export var damage := 50
+
 func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	look_at(get_global_mouse_position())
-	if Input.is_action_just_pressed("attack"):
-		var bullet_instance = BULLET.instantiate()
-		get_tree().root.add_child(bullet_instance)
-		bullet_instance.global_position = global_position
-		bullet_instance.rotation = rotation
+	
 	move_and_slide()
 
 func _process(delta: float) -> void:
