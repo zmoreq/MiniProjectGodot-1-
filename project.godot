@@ -23,6 +23,7 @@ mouse_cursor/custom_image="uid://8cmcfcl3apsu"
 
 Player=""
 Bullet=""
+Enemy=""
 
 [input]
 

@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://83v8y1i3e7yw"]
+
+[ext_resource type="Script" uid="uid://bhhmwkuv8mrcs" path="res://scripts/enemy/red_enemy.gd" id="1_2gm4t"]
+[ext_resource type="Texture2D" uid="uid://crjtsql1di5dd" path="res://sprites/snake.png" id="2_2gm4t"]
+[ext_resource type="Script" uid="uid://c63igvekm3rq2" path="res://scripts/states/state_machine.gd" id="3_6iv21"]
+[ext_resource type="Script" uid="uid://cowglthms56m3" path="res://scripts/enemy/enemy_follow.gd" id="4_paybi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaaat"]
+atlas = ExtResource("2_2gm4t")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iv21"]
+atlas = ExtResource("2_2gm4t")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_paybi"]
+atlas = ExtResource("2_2gm4t")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b43al"]
+atlas = ExtResource("2_2gm4t")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5gmkd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaaat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6iv21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paybi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b43al")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fsb3w"]
+radius = 5.0
+
+[node name="Blue Enemy" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 3
+collision_mask = 2
+script = ExtResource("1_2gm4t")
+health = 500
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5gmkd")
+animation = &"Walk"
+autoplay = "Walk"
+frame_progress = 0.00515662
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fsb3w")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_6iv21")
+initial_state = NodePath("Follow")
+metadata/_custom_type_script = "uid://c63igvekm3rq2"
+
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_paybi")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://cowglthms56m3"
