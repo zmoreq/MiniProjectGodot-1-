@@ -7,7 +7,6 @@ class_name PlayerRangeAttack
 func Enter():
 	animated_sprite_2d.play("Shoot")
 	
-	
 func Update(_delta: float):
 	pass
 

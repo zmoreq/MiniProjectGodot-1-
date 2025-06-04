@@ -5,6 +5,7 @@ class_name Player
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @export var damage := 50
 @onready var progress_bar: TextureProgressBar = $CanvasLayer/TextureProgressBar
+var experience := 0
 
 func _ready() -> void:
 	pass
@@ -18,9 +19,10 @@ func _process(delta: float) -> void:
 	
 	if direction.x > 0:
 		animated_sprite_2d.scale.x = 1
-		update_exp()
 	elif direction.x < 0:
 		animated_sprite_2d.scale.x = -1
 
-func update_exp():
-	progress_bar.value += 0.5
+func update_exp(exp):
+	progress_bar.value += exp
+	experience += exp
+	print("your exp: ", experience)

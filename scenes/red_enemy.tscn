@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://yocbcnjh7e7p"]
 
-[ext_resource type="Script" uid="uid://bhhmwkuv8mrcs" path="res://scripts/enemy/red_enemy.gd" id="1_faa20"]
+[ext_resource type="Script" uid="uid://bhhmwkuv8mrcs" path="res://scripts/enemy/basic_enemy.gd" id="1_faa20"]
 [ext_resource type="Texture2D" uid="uid://dn03io8xnw80q" path="res://sprites/enemy.png" id="1_fsb3w"]
 [ext_resource type="Script" uid="uid://c63igvekm3rq2" path="res://scripts/states/state_machine.gd" id="2_or7ri"]
 [ext_resource type="Script" uid="uid://cowglthms56m3" path="res://scripts/enemy/enemy_follow.gd" id="3_f3bb0"]
@@ -48,6 +48,7 @@ radius = 5.0
 collision_layer = 3
 collision_mask = 2
 script = ExtResource("1_faa20")
+exp_value = 20
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5gmkd")

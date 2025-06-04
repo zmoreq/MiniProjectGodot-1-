@@ -1,15 +1,24 @@
 extends Node2D
 
 const BULLET = preload("res://scenes/bullet.tscn")
+@onready var timer: Timer = $"../Timer"
+@export var attack_cd = 2.0
 
 func _ready() -> void:
-	pass
+	timer.wait_time = attack_cd
+	timer.start()
 
 func _process(delta: float) -> void:
+	pass
+	#if Input.is_action_just_pressed("attack"):
+
+func _on_timer_timeout():
+	shoot()
+
+func shoot():
 	look_at(get_global_mouse_position())
 	
-	if Input.is_action_just_pressed("attack"):
-		var bullet_instance = BULLET.instantiate()
-		get_tree().root.add_child(bullet_instance)
-		bullet_instance.global_position = global_position
-		bullet_instance.rotation = rotation
+	var bullet_instance = BULLET.instantiate()
+	get_tree().root.add_child(bullet_instance)
+	bullet_instance.global_position = global_position
+	bullet_instance.rotation = rotation
