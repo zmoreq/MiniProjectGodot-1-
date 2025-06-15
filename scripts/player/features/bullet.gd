@@ -13,7 +13,6 @@ func _physics_process(delta: float) -> void:
 	if isAlive:
 		position += transform.x * bullet_speed * delta
 
-
 func _on_area_2d_body_entered(body) -> void:
 	if body.is_in_group("Enemy"):
 		isAlive = false

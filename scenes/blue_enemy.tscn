@@ -48,7 +48,6 @@ radius = 5.0
 collision_layer = 3
 collision_mask = 2
 script = ExtResource("1_2gm4t")
-exp_value = 15
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5gmkd")

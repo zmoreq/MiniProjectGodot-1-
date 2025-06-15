@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://w1a1jo5wmw3o"]
+[gd_scene load_steps=19 format=3 uid="uid://w1a1jo5wmw3o"]
 
 [ext_resource type="Texture2D" uid="uid://gvlb1oh2e86m" path="res://sprites/character.png" id="1_p0vlq"]
 [ext_resource type="Script" uid="uid://c2easx6weu7vc" path="res://scripts/player/player.gd" id="1_v6fml"]
@@ -8,8 +8,6 @@
 [ext_resource type="Script" uid="uid://blq5gqn8v6nte" path="res://scripts/player/player_walk.gd" id="5_qu4a1"]
 [ext_resource type="Script" uid="uid://kepngejlrp2u" path="res://scripts/player/features/range_weapon.gd" id="6_70d11"]
 [ext_resource type="Script" uid="uid://dymdd4aqghg13" path="res://scripts/player/player_range_attack.gd" id="7_khinc"]
-[ext_resource type="Texture2D" uid="uid://c7m1sykmw0213" path="res://sprites/level-bar.png" id="9_6eyey"]
-[ext_resource type="Texture2D" uid="uid://cdk6jlqifo57s" path="res://sprites/level-bar-progress.png" id="10_d3wef"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6fml"]
 atlas = ExtResource("1_p0vlq")
@@ -93,15 +91,6 @@ height = 8.5
 y_sort_enabled = true
 script = ExtResource("1_v6fml")
 
-[node name="Weapon" type="Node2D" parent="."]
-
-[node name="Range Weapon" type="Node2D" parent="Weapon"]
-position = Vector2(1, 3)
-script = ExtResource("6_70d11")
-
-[node name="Timer" type="Timer" parent="Weapon"]
-autostart = true
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6eyey")
 animation = &"Shoot"
@@ -132,20 +121,13 @@ script = ExtResource("7_khinc")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://dymdd4aqghg13"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Weapon" type="Node2D" parent="."]
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -49.0
-offset_top = -1.0
-offset_right = 49.0
-offset_bottom = 11.0
-grow_horizontal = 2
-scale = Vector2(5, 5)
-pivot_offset = Vector2(49, 6)
-texture_under = ExtResource("9_6eyey")
-texture_progress = ExtResource("10_d3wef")
+[node name="Range Weapon" type="Node2D" parent="Weapon"]
+position = Vector2(1, 3)
+script = ExtResource("6_70d11")
+
+[node name="Timer" type="Timer" parent="Weapon"]
+autostart = true
 
 [connection signal="timeout" from="Weapon/Timer" to="Weapon/Range Weapon" method="_on_timer_timeout"]

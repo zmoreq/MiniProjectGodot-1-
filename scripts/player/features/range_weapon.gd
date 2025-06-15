@@ -19,6 +19,10 @@ func shoot():
 	look_at(get_global_mouse_position())
 	
 	var bullet_instance = BULLET.instantiate()
-	get_tree().root.add_child(bullet_instance)
+	var game_node = get_tree().get_root().get_node("Game")
+	var bullet_container = game_node.get_node("Bullets")
+	bullet_container.add_child(bullet_instance)
 	bullet_instance.global_position = global_position
 	bullet_instance.rotation = rotation
+	
+	

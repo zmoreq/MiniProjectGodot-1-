@@ -15,9 +15,23 @@ run/main_scene="uid://bx71ayt52r48c"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+LevelManager="*res://scripts/managers/level_manager.gd"
+EnemyManager="*res://scripts/managers/enemy_manager.gd"
+
 [display]
 
 mouse_cursor/custom_image="uid://8cmcfcl3apsu"
+
+[file_customization]
+
+folder_colors={
+"res://scripts/enemy/": "red",
+"res://scripts/managers/": "pink",
+"res://scripts/player/": "green",
+"res://scripts/states/": "blue"
+}
 
 [global_group]
 

@@ -1,5 +1,4 @@
 extends Button
-const RED = preload("res://scenes/red_enemy.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,6 +11,4 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	var enemy = RED.instantiate()
-	get_tree().root.add_child(enemy)
-	enemy.global_position = Vector2(15, 15)
+	EnemyManager.spawn_enemy()
