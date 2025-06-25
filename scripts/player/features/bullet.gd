@@ -6,6 +6,7 @@ extends Node2D
 var isAlive = true
 var damage: int
 
+
 func _ready() -> void:
 	damage = player.damage
 

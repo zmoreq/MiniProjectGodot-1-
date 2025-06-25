@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 LevelManager="*res://scripts/managers/level_manager.gd"
-EnemyManager="*res://scripts/managers/enemy_manager.gd"
 
 [display]
 

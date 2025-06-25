@@ -195,12 +195,11 @@ metadata/_edit_use_anchors_ = true
 [node name="Debug pozycji" type="Node2D" parent="."]
 position = Vector2(259, 164)
 
+[node name="Wave Timer" type="Timer" parent="."]
+autostart = true
+
 [node name="Enemy Manager" type="Node2D" parent="."]
 script = ExtResource("8_gee14")
 
-[node name="Wave Timer" type="Timer" parent="Enemy Manager"]
-wait_time = 2.0
-
 [connection signal="pressed" from="UI/debug button" to="UI/debug button" method="_on_pressed"]
 [connection signal="pressed" from="UI/debug button 2" to="UI/debug button 2" method="_on_pressed"]
-[connection signal="timeout" from="Enemy Manager/Wave Timer" to="Enemy Manager" method="_on_wave_timer_timeout"]

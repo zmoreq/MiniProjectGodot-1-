@@ -1,5 +1,7 @@
 extends Button
 
+@onready var enemy_manager: Node2D = $"../../Enemy Manager"
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -11,4 +13,4 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	EnemyManager.spawn_enemy()
+	enemy_manager.spawn_enemy()
