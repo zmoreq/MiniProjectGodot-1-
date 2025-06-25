@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="N A D I R"
+config/name="SmallGodotProject"
 run/main_scene="uid://bx71ayt52r48c"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
