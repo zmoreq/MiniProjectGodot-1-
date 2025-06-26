@@ -3,12 +3,17 @@ extends Node
 const EXP_ORB = preload("res://scenes/experience_orb.tscn")
 @onready var game_node = get_tree().get_root().get_node("Game")
 @onready var orbs_container = game_node.get_node("Exp Orbs")
+@onready var enemy_manager = game_node.get_node("Enemy Manager")
+
+var experience = 0
+var max_experience = 100
+var level = 1
 var experience_bar: TextureProgressBar
 
+signal orbs_can_move
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	enemy_manager.connect("wave_finished", self._on_wave_finished) # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -16,6 +21,12 @@ func _process(delta: float) -> void:
 
 func update_exp(value):
 	experience_bar.value += value
+	experience += value
+	
+	if experience >= max_experience:
+		level += 1
+		experience_bar.value = 0
+		experience = 0
 
 func _on_enemy_died(position: Vector2, exp_value):
 	var exp_orb = EXP_ORB.instantiate()
@@ -28,3 +39,9 @@ func _on_enemy_died(position: Vector2, exp_value):
 func _on_orb_collected(exp_value):
 	print("Zebralem orba ", exp_value)
 	update_exp(exp_value)
+	
+func _on_wave_finished():
+	print("Widze ze wave sie skonczyl!!!")
+	emit_signal("orbs_can_move")
+	
+	

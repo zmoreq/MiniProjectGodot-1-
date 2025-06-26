@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://bx71ayt52r48c"]
+[gd_scene load_steps=12 format=4 uid="uid://bx71ayt52r48c"]
 
 [ext_resource type="Script" uid="uid://c1hn4bprdnisp" path="res://scenes/game.gd" id="1_kiw3p"]
 [ext_resource type="PackedScene" uid="uid://w1a1jo5wmw3o" path="res://scenes/Player.tscn" id="1_qbsmt"]
 [ext_resource type="Texture2D" uid="uid://bd3jg5xsw3ei0" path="res://sprites/map.png" id="2_cpr0p"]
 [ext_resource type="Script" uid="uid://cadxiqjpjjwf2" path="res://scripts/button.gd" id="5_aug50"]
 [ext_resource type="Texture2D" uid="uid://c7m1sykmw0213" path="res://sprites/level-bar.png" id="5_kiw3p"]
-[ext_resource type="Script" uid="uid://m0vry0hhogvs" path="res://scripts/button_2.gd" id="5_s0nni"]
 [ext_resource type="Texture2D" uid="uid://cdk6jlqifo57s" path="res://sprites/level-bar-progress.png" id="6_400sg"]
 [ext_resource type="Script" uid="uid://caq4gg3abouij" path="res://scripts/managers/enemy_manager.gd" id="8_gee14"]
 
@@ -164,16 +163,8 @@ offset_left = 154.0
 offset_top = 14.0
 offset_right = 245.0
 offset_bottom = 45.0
-text = "red enemy"
+text = "next wave"
 script = ExtResource("5_aug50")
-
-[node name="debug button 2" type="Button" parent="UI"]
-offset_left = 22.0
-offset_top = 14.0
-offset_right = 121.0
-offset_bottom = 45.0
-text = "blue enemy"
-script = ExtResource("5_s0nni")
 
 [node name="Experience Bar" type="TextureProgressBar" parent="UI"]
 anchors_preset = 5
@@ -202,5 +193,4 @@ script = ExtResource("8_gee14")
 wait_time = 2.0
 
 [connection signal="pressed" from="UI/debug button" to="UI/debug button" method="_on_pressed"]
-[connection signal="pressed" from="UI/debug button 2" to="UI/debug button 2" method="_on_pressed"]
 [connection signal="timeout" from="Enemy Manager/Wave Timer" to="Enemy Manager" method="_on_wave_timer_timeout"]

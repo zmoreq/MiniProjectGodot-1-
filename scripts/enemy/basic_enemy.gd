@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var health := 100
 var exp_value
-signal died(position)
+signal died(position, exp_value)
 
 func _ready() -> void:
 	pass

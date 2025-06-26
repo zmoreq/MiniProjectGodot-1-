@@ -84,8 +84,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6eyey"]
-radius = 1.5
-height = 8.5
+radius = 2.75
+height = 13.0
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true

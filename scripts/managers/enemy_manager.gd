@@ -6,6 +6,10 @@ extends Node
 @onready var current_wave = 1
 
 var current_enemy_count = 0
+var wave_is_alive = true
+var wave_finished_emitted := false
+
+signal wave_finished()
 
 var max_y
 var max_x
@@ -16,8 +20,8 @@ enum EnemyType {
 }
 
 var waves = {
-	1 : {"enemy_count": 10, "spawn_rate": 2.0},
-	2 : {"enemy_count": 20, "spawn_rate": 1.5}
+	1 : {"enemy_count": 3, "spawn_rate": 2.0},
+	2 : {"enemy_count": 5, "spawn_rate": 1.5}
 }
 
 const ENEMY_SCENES = {
@@ -28,7 +32,6 @@ const ENEMY_SCENES = {
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var spawn_rate = waves[current_wave]["spawn_rate"]
-	
 	wave_timer.wait_time = spawn_rate
 	wave_timer.start()
 
@@ -36,8 +39,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var enemy_count = waves[current_wave]["enemy_count"]
 	if current_enemy_count >= enemy_count:
-		wave_timer.stop()
-		next_wave()
+		if wave_is_alive:
+			wave_timer.stop()
+		if !enemies_alive() and !wave_finished_emitted:
+			emit_signal("wave_finished")
+			wave_finished_emitted = true
 	
 
 func spawn_enemy():	
@@ -49,7 +55,7 @@ func spawn_enemy():
 	var x = randi_range(0, max_x)
 	var y = randi_range(0, max_y)
 	enemy.global_position = Vector2(x, y)
-	enemy.exp_value = 10
+	enemy.exp_value = 51
 	
 	enemy.connect("died", LevelManager._on_enemy_died)
 	current_enemy_count += 1
@@ -59,8 +65,18 @@ func next_wave():
 	print("Next wave - WAVE ", current_wave)
 	var spawn_rate = waves[current_wave]["spawn_rate"]
 	wave_timer.wait_time = spawn_rate
-	
+	wave_timer.start()
+	wave_is_alive = true
+	wave_finished_emitted = false
 	
 
 func _on_wave_timer_timeout() -> void:
 	spawn_enemy() # Replace with function body.
+	
+func enemies_alive() -> bool:
+	var enemies = enemy_container.get_children()
+	
+	if enemies.size() == 0:
+		return false
+	else:
+		return true
