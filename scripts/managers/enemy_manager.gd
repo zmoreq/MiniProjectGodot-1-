@@ -43,6 +43,7 @@ func _process(delta: float) -> void:
 			wave_timer.stop()
 		if !enemies_alive() and !wave_finished_emitted:
 			emit_signal("wave_finished")
+			current_enemy_count = 0
 			wave_finished_emitted = true
 	
 

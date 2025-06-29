@@ -3,7 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://ccsvrs1go2dcp" path="res://sprites/upgrade_card.png" id="1_62kwj"]
 [ext_resource type="Script" uid="uid://cl68ywooa3osf" path="res://scripts/upgrade_card.gd" id="1_ew4bf"]
 
-[node name="Upgrade Card" type="Node2D"]
+[node name="Upgrade Card" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_ew4bf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -11,10 +13,12 @@ texture = ExtResource("1_62kwj")
 
 [node name="Text" type="RichTextLabel" parent="."]
 offset_left = -10.0
-offset_top = 2.0
-offset_right = 123.0
-offset_bottom = 82.0
-scale = Vector2(0.15, 0.15)
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 113.0
+scale = Vector2(0.1, 0.1)
 text = "Lorem ipsum dolores"
 fit_content = true
 horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

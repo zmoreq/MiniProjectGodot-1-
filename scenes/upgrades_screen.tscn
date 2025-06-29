@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://br41bw14hwnwm"]
+
+[ext_resource type="PackedScene" uid="uid://dcj5rik3c1ug0" path="res://scenes/upgrade_card.tscn" id="1_km6si"]
+
+[node name="Upgrades Screen" type="CanvasLayer"]
+process_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 0.490196)
+
+[node name="Upgrade Card" parent="." instance=ExtResource("1_km6si")]
+offset_left = 261.0
+offset_top = 333.0
+offset_right = 261.0
+offset_bottom = 333.0
+scale = Vector2(9, 9)
+
+[node name="Upgrade Card2" parent="." instance=ExtResource("1_km6si")]
+offset_left = 904.0
+offset_top = 337.0
+offset_right = 904.0
+offset_bottom = 337.0
+scale = Vector2(9, 9)
+
+[node name="Upgrade Card3" parent="." instance=ExtResource("1_km6si")]
+offset_left = 571.0
+offset_top = 330.0
+offset_right = 571.0
+offset_bottom = 330.0
+scale = Vector2(9, 9)

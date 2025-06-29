@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=4 uid="uid://bx71ayt52r48c"]
 
-[ext_resource type="Script" uid="uid://c1hn4bprdnisp" path="res://scenes/game.gd" id="1_kiw3p"]
+[ext_resource type="Script" uid="uid://c1hn4bprdnisp" path="res://scripts/game.gd" id="1_kiw3p"]
 [ext_resource type="PackedScene" uid="uid://w1a1jo5wmw3o" path="res://scenes/Player.tscn" id="1_qbsmt"]
 [ext_resource type="Texture2D" uid="uid://bd3jg5xsw3ei0" path="res://sprites/map.png" id="2_cpr0p"]
 [ext_resource type="Script" uid="uid://cadxiqjpjjwf2" path="res://scripts/button.gd" id="5_aug50"]
@@ -180,6 +180,14 @@ pivot_offset = Vector2(49, 6)
 texture_under = ExtResource("5_kiw3p")
 texture_progress = ExtResource("6_400sg")
 metadata/_edit_use_anchors_ = true
+
+[node name="Level Text" type="RichTextLabel" parent="UI"]
+offset_left = 501.0
+offset_top = 31.0
+offset_right = 573.0
+offset_bottom = 71.0
+scale = Vector2(2.01, 2.01)
+text = "Level: 1"
 
 [node name="Enemies" type="Node2D" parent="."]
 

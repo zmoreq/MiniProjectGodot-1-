@@ -1,9 +1,12 @@
 extends Node
 
+const UPGRADES_SCREEN = preload("res://scenes/upgrades_screen.tscn")
 const EXP_ORB = preload("res://scenes/experience_orb.tscn")
+
 @onready var game_node = get_tree().get_root().get_node("Game")
 @onready var orbs_container = game_node.get_node("Exp Orbs")
 @onready var enemy_manager = game_node.get_node("Enemy Manager")
+@onready var level_text: RichTextLabel = game_node.get_node("UI").get_node("Level Text")
 
 var experience = 0
 var max_experience = 100
@@ -24,9 +27,7 @@ func update_exp(value):
 	experience += value
 	
 	if experience >= max_experience:
-		level += 1
-		experience_bar.value = 0
-		experience = 0
+		level_up()
 
 func _on_enemy_died(position: Vector2, exp_value):
 	var exp_orb = EXP_ORB.instantiate()
@@ -44,4 +45,16 @@ func _on_wave_finished():
 	print("Widze ze wave sie skonczyl!!!")
 	emit_signal("orbs_can_move")
 	
+func level_up():
+	get_tree().paused = true
+	level += 1
+	level_text.text = "Level: " + str(level)
+	experience_bar.value = 0
+	experience = 0
+	
+	show_upgrades()
+
+func show_upgrades():
+	var upgrades = UPGRADES_SCREEN.instantiate()
+	game_node.add_child(upgrades)
 	

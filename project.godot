@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 LevelManager="*res://scripts/managers/level_manager.gd"
+UpgradesData="*res://scripts/upgrades_data.gd"
 
 [display]
 
