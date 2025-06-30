@@ -3,7 +3,7 @@ class_name Player
 
 @export var health := 100
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@export var damage := 50
+@export var damage := 100
 var experience := 0
 
 

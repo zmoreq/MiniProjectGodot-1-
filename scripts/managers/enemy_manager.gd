@@ -20,7 +20,7 @@ enum EnemyType {
 }
 
 var waves = {
-	1 : {"enemy_count": 3, "spawn_rate": 2.0},
+	1 : {"enemy_count": 3, "spawn_rate": 1.0},
 	2 : {"enemy_count": 5, "spawn_rate": 1.5}
 }
 
@@ -56,13 +56,13 @@ func spawn_enemy():
 	var x = randi_range(0, max_x)
 	var y = randi_range(0, max_y)
 	enemy.global_position = Vector2(x, y)
-	enemy.exp_value = 51
+	enemy.exp_value = 100
 	
 	enemy.connect("died", LevelManager._on_enemy_died)
 	current_enemy_count += 1
 
 func next_wave():
-	current_wave += 1
+	#current_wave += 1
 	print("Next wave - WAVE ", current_wave)
 	var spawn_rate = waves[current_wave]["spawn_rate"]
 	wave_timer.wait_time = spawn_rate

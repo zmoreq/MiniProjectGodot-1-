@@ -22,6 +22,7 @@ UpgradesData="*res://scripts/upgrades_data.gd"
 
 [display]
 
+window/size/borderless=true
 mouse_cursor/custom_image="uid://8cmcfcl3apsu"
 
 [file_customization]

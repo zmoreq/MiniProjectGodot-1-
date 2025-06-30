@@ -1,34 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://br41bw14hwnwm"]
+[gd_scene load_steps=3 format=3 uid="uid://br41bw14hwnwm"]
 
+[ext_resource type="Script" uid="uid://b2wc3pi27nsyl" path="res://scripts/upgrades_screen.gd" id="1_iswj5"]
 [ext_resource type="PackedScene" uid="uid://dcj5rik3c1ug0" path="res://scenes/upgrade_card.tscn" id="1_km6si"]
 
 [node name="Upgrades Screen" type="CanvasLayer"]
-process_mode = 4
+process_mode = 3
+script = ExtResource("1_iswj5")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+process_mode = 3
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.490196)
 
 [node name="Upgrade Card" parent="." instance=ExtResource("1_km6si")]
-offset_left = 261.0
-offset_top = 333.0
-offset_right = 261.0
-offset_bottom = 333.0
-scale = Vector2(9, 9)
+anchors_preset = -1
+anchor_left = 0.158
+anchor_right = 0.158
+offset_left = -14.016
+offset_right = 15.984
+grow_horizontal = 1
 
 [node name="Upgrade Card2" parent="." instance=ExtResource("1_km6si")]
-offset_left = 904.0
-offset_top = 337.0
-offset_right = 904.0
-offset_bottom = 337.0
-scale = Vector2(9, 9)
 
 [node name="Upgrade Card3" parent="." instance=ExtResource("1_km6si")]
-offset_left = 571.0
-offset_top = 330.0
-offset_right = 571.0
-offset_bottom = 330.0
-scale = Vector2(9, 9)
+anchors_preset = -1
+anchor_left = 0.826
+anchor_right = 0.826
+offset_left = -14.5521
+offset_right = 15.4479
+grow_horizontal = 0
+
+[connection signal="upgraded_chosen" from="Upgrade Card" to="." method="_on_upgrade_card_upgraded_chosen"]
+[connection signal="upgraded_chosen" from="Upgrade Card2" to="." method="_on_upgrade_card_2_upgraded_chosen"]
+[connection signal="upgraded_chosen" from="Upgrade Card3" to="." method="_on_upgrade_card_3_upgraded_chosen"]

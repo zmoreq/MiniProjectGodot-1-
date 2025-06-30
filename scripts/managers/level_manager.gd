@@ -51,7 +51,6 @@ func level_up():
 	level_text.text = "Level: " + str(level)
 	experience_bar.value = 0
 	experience = 0
-	
 	show_upgrades()
 
 func show_upgrades():

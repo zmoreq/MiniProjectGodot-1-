@@ -1,9 +1,11 @@
-extends Control
+extends TextureButton
 
 @onready var text_label: RichTextLabel = $Text
 var multiplier
 var stat
 var text
+@onready var start_scale = scale
+signal upgraded_chosen
 
 func _ready() -> void:
 	set_data()
@@ -26,4 +28,14 @@ func set_data():
 
 
 func _on_mouse_entered() -> void:
-	scale = Vector2(2, 2)
+	var tween = get_tree().create_tween()
+	tween.set_pause_mode(2)
+	tween.tween_property(self, "scale", start_scale + Vector2(0.2, 0.2), 0.2)
+
+func _on_mouse_exited() -> void:
+	var tween = get_tree().create_tween()
+	tween.set_pause_mode(2)
+	tween.tween_property(self, "scale", start_scale, 0.2)
+
+func _on_pressed() -> void:
+	emit_signal("upgraded_chosen")
