@@ -1,14 +1,19 @@
 extends Node2D
 
 const BULLET = preload("res://scenes/bullet.tscn")
-@onready var timer: Timer = $"../Timer"
-@export var attack_cd = 2.0
+@export var player: CharacterBody2D
+@export var timer: Timer
+
+var is_connected = false
 
 func _ready() -> void:
-	timer.wait_time = attack_cd
+	if not is_connected:
+		player.connect("updated_stat", self._update_stat)
+		is_connected = true
+	_update_stat()
 	timer.start()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	#if Input.is_action_just_pressed("attack"):
 
@@ -25,4 +30,5 @@ func shoot():
 	bullet_instance.global_position = global_position
 	bullet_instance.rotation = rotation
 	
-	
+func _update_stat():
+	timer.wait_time = player.stats["attack_cd"]

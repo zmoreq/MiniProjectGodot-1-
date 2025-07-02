@@ -7,6 +7,7 @@ const EXP_ORB = preload("res://scenes/experience_orb.tscn")
 @onready var orbs_container = game_node.get_node("Exp Orbs")
 @onready var enemy_manager = game_node.get_node("Enemy Manager")
 @onready var level_text: RichTextLabel = game_node.get_node("UI").get_node("Level Text")
+@onready var player : CharacterBody2D = game_node.get_node("Player")
 
 var experience = 0
 var max_experience = 100
@@ -56,4 +57,26 @@ func level_up():
 func show_upgrades():
 	var upgrades = UPGRADES_SCREEN.instantiate()
 	game_node.add_child(upgrades)
+	var tween = get_tree().create_tween()
+	tween.set_pause_mode(2)
+	for upgrade in upgrades.get_children():
+		tween.tween_property(upgrade, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
+		if upgrade is TextureButton:
+			upgrade.connect("upgrade_chosen", self.unpause)
+			upgrade.connect("add_stat", self._add_stat)
+
+func unpause(upgrade_screen):
+	var tween = get_tree().create_tween()
+	tween.set_pause_mode(2)
+	var upgrades = upgrade_screen.get_children()
+	upgrades.reverse()
+	for upgrade in upgrades:
+		tween.tween_property(upgrade, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.2)
+	await tween.finished
+	get_tree().paused = false
+	upgrade_screen.queue_free()
+
+func _add_stat(stat_name, multiplier):
+	player.apply_stat_change(stat_name, multiplier)
+	print("level manager dodal")
 	

@@ -123,9 +123,11 @@ metadata/_custom_type_script = "uid://dymdd4aqghg13"
 
 [node name="Weapon" type="Node2D" parent="."]
 
-[node name="Range Weapon" type="Node2D" parent="Weapon"]
+[node name="Range Weapon" type="Node2D" parent="Weapon" node_paths=PackedStringArray("player", "timer")]
 position = Vector2(1, 3)
 script = ExtResource("6_70d11")
+player = NodePath("../..")
+timer = NodePath("../Timer")
 
 [node name="Timer" type="Timer" parent="Weapon"]
 autostart = true

@@ -1,17 +1,21 @@
 extends CharacterBody2D
 class_name Player
 
-@export var health := 100
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@export var damage := 100
-var experience := 0
+signal updated_stat
 
+@export var stats = {
+	"health" : 100,
+	"damage" : 100,
+	"bullet_speed" : 50,
+	"attack_cd" : 2.0,
+	"movement_speed" : 30.0
+}
 
 func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	
 	move_and_slide()
 
 func _process(delta: float) -> void:
@@ -21,3 +25,9 @@ func _process(delta: float) -> void:
 		animated_sprite_2d.scale.x = 1
 	elif direction.x < 0:
 		animated_sprite_2d.scale.x = -1
+
+func apply_stat_change(stat_name : String, multiplier : float):
+	emit_signal("updated_stat")
+	if stats.has(stat_name):
+		stats[stat_name] *= multiplier
+		
