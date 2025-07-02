@@ -4,6 +4,7 @@ extends Node
 @onready var enemy_container = game_node.get_node("Enemies")
 @onready var wave_timer: Timer = $"Wave Timer"
 @onready var current_wave = 1
+@onready var level_manager: Node2D = $"../Level Manager"
 
 var current_enemy_count = 0
 var wave_is_alive = true
@@ -58,7 +59,7 @@ func spawn_enemy():
 	enemy.global_position = Vector2(x, y)
 	enemy.exp_value = 100
 	
-	enemy.connect("died", LevelManager._on_enemy_died)
+	enemy.connect("died", level_manager._on_enemy_died)
 	current_enemy_count += 1
 
 func next_wave():

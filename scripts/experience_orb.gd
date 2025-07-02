@@ -4,11 +4,12 @@ var exp_value
 
 @onready var game_node = get_tree().get_root().get_node("Game")
 @onready var player = game_node.get_node("Player")
+@onready var level_manager: Node2D = game_node.get_node("Level Manager")
 signal exp_collected(exp_value)
 var can_move = false
 
 func _ready() -> void:
-	LevelManager.connect("orbs_can_move", self._on_wave_finished) 
+	level_manager.connect("orbs_can_move", self._on_wave_finished) 
 
 func _process(delta: float) -> void:
 	pass
