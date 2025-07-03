@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://83v8y1i3e7yw"]
+[gd_scene load_steps=12 format=3 uid="uid://83v8y1i3e7yw"]
 
 [ext_resource type="Script" uid="uid://bhhmwkuv8mrcs" path="res://scripts/enemy/basic_enemy.gd" id="1_2gm4t"]
 [ext_resource type="Texture2D" uid="uid://crjtsql1di5dd" path="res://sprites/snake.png" id="2_2gm4t"]
@@ -44,6 +44,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_fsb3w"]
 radius = 5.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2gm4t"]
+radius = 14.0
+
 [node name="Blue Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 3
 collision_mask = 2
@@ -67,3 +70,15 @@ metadata/_custom_type_script = "uid://c63igvekm3rq2"
 script = ExtResource("4_paybi")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://cowglthms56m3"
+
+[node name="Attack Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Area"]
+shape = SubResource("CircleShape2D_2gm4t")
+
+[node name="Attack Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="body_entered" from="Attack Area" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="Attack Area" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="Attack Timer" to="." method="_on_attack_timer_timeout"]

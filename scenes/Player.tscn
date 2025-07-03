@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://w1a1jo5wmw3o"]
+[gd_scene load_steps=21 format=3 uid="uid://w1a1jo5wmw3o"]
 
 [ext_resource type="Texture2D" uid="uid://gvlb1oh2e86m" path="res://sprites/character.png" id="1_p0vlq"]
 [ext_resource type="Script" uid="uid://c2easx6weu7vc" path="res://scripts/player/player.gd" id="1_v6fml"]
@@ -87,6 +87,12 @@ animations = [{
 radius = 2.75
 height = 13.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khinc"]
+bg_color = Color(0.976062, 0.405494, 0.325609, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bruh7"]
+bg_color = Color(1.36691e-05, 0.699203, 0.146732, 1)
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_v6fml")
@@ -131,5 +137,16 @@ timer = NodePath("../Timer")
 
 [node name="Timer" type="Timer" parent="Weapon"]
 autostart = true
+
+[node name="Health Bar" type="ProgressBar" parent="."]
+offset_left = -6.0
+offset_top = -9.0
+offset_right = 127.0
+offset_bottom = 18.0
+scale = Vector2(0.09, 0.09)
+theme_override_styles/background = SubResource("StyleBoxFlat_khinc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bruh7")
+value = 50.0
+show_percentage = false
 
 [connection signal="timeout" from="Weapon/Timer" to="Weapon/Range Weapon" method="_on_timer_timeout"]

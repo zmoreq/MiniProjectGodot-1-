@@ -8,11 +8,9 @@ var start_scale = Vector2(1.0, 1.0)
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
 
 func _on_play_button_mouse_entered() -> void:
 	hover_effect_up(play_button) # Replace with function body.
