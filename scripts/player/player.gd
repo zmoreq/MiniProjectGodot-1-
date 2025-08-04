@@ -7,7 +7,7 @@ signal updated_stat
 
 @export var stats = {
 	"health" : 100,
-	"damage" : 100,
+	"damage" : 34,
 	"bullet_speed" : 50,
 	"attack_cd" : 2.0,
 	"movement_speed" : 30.0

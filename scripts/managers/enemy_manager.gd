@@ -57,7 +57,7 @@ func spawn_enemy():
 	var x = randi_range(0, max_x)
 	var y = randi_range(0, max_y)
 	enemy.global_position = Vector2(x, y)
-	enemy.exp_value = 100
+	enemy.exp_value = 20
 	
 	enemy.connect("died", level_manager._on_enemy_died)
 	current_enemy_count += 1
