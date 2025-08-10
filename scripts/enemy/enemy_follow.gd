@@ -9,7 +9,6 @@ class_name EnemyFollow
 func Enter():
 	animated_sprite_2d.play("Walk")
 	
-	
 func Update(_delta: float):
 	var direction := (player.global_position - enemy.global_position).normalized()
 	if direction.x > 0:

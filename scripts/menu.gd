@@ -2,6 +2,7 @@ extends Control
 
 @onready var play_button: TextureButton = $"VBoxContainer/Play Button"
 @onready var exit_button: TextureButton = $"VBoxContainer/Exit Button"
+@onready var alpha_rect: ColorRect = $"Alpha Rect"
 
 var start_scale = Vector2(1.0, 1.0)
 # Called when the node enters the scene tree for the first time.
@@ -36,4 +37,12 @@ func _on_exit_button_mouse_exited() -> void:
 
 
 func _on_play_button_pressed() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(alpha_rect, "color:a", 1, 1.0 )
+	tween.connect("finished", self._on_tween_finished)
+
+func _on_tween_finished():
 	get_tree().change_scene_to_file("res://scenes/Game.tscn")
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()

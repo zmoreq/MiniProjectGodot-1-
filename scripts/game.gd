@@ -5,10 +5,13 @@ extends Node2D
 var is_paused = false
 var esc_menu
 const pause_menu = preload("res://scenes/pause_screen.tscn")
-
+@onready var info_text: RichTextLabel = $"UI/Info mode/RichTextLabel"
+@onready var color_rect: ColorRect = $"UI/Info mode/ColorRect"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_game_init()
+	
 	level_manager.experience_bar = $"UI/Experience Bar"
 	enemy_manager.max_x = 250
 	enemy_manager.max_y = 160
@@ -28,3 +31,18 @@ func _show_pause_menu():
 	
 func _close_pause_menu(menu):
 	menu.queue_free()
+	
+func _game_init():
+	get_tree().paused = true
+	var tween1 = get_tree().create_tween()
+	tween1.set_pause_mode(2)
+	tween1.tween_property(color_rect, "modulate:a", 0, 4.0)
+	tween1.connect("finished", self._unpause)
+	
+	var tween2 = get_tree().create_tween()
+	tween2.set_pause_mode(2)
+	tween2.tween_property(info_text, "modulate:a", 0, 4.0)
+	
+func _unpause():
+	get_tree().paused = false
+	
