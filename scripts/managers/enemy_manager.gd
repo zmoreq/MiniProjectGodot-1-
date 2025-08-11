@@ -21,8 +21,10 @@ enum EnemyType {
 }
 
 var waves = {
-	1 : {"enemy_count": 3, "spawn_rate": 1.0},
-	2 : {"enemy_count": 5, "spawn_rate": 1.5}
+	1 : {"enemy_count": 5, "spawn_rate": 3.0, "hp_multi": 1},
+	2 : {"enemy_count": 8, "spawn_rate": 2.5, "hp_multi": 1.2},
+	3 : {"enemy_count": 10, "spawn_rate": 2, "hp_multi": 1},
+	4 : {"enemy_count": 15, "spawn_rate": 2, "hp_multi": 0.5}
 }
 
 const ENEMY_SCENES = {
@@ -63,7 +65,7 @@ func spawn_enemy():
 	current_enemy_count += 1
 
 func next_wave():
-	#current_wave += 1
+	current_wave += 1
 	print("Next wave - WAVE ", current_wave)
 	var spawn_rate = waves[current_wave]["spawn_rate"]
 	wave_timer.wait_time = spawn_rate

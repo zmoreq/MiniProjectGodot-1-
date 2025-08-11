@@ -7,7 +7,9 @@ extends Control
 var start_scale = Vector2(1.0, 1.0)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	get_tree().paused = false
+	var tween = get_tree().create_tween()
+	tween.tween_property(alpha_rect, "color:a", 0, 1.0 )
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -34,7 +36,6 @@ func _on_play_button_mouse_exited() -> void:
 
 func _on_exit_button_mouse_exited() -> void:
 	hover_effect_down(exit_button) # Replace with function body.
-
 
 func _on_play_button_pressed() -> void:
 	var tween = get_tree().create_tween()

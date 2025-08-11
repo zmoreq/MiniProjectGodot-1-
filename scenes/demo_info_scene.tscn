@@ -1,16 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://bx71ayt52r48c"]
+[gd_scene load_steps=7 format=4 uid="uid://d4aj8drvdde1a"]
 
-[ext_resource type="Script" uid="uid://c1hn4bprdnisp" path="res://scripts/game.gd" id="1_kiw3p"]
-[ext_resource type="PackedScene" uid="uid://w1a1jo5wmw3o" path="res://scenes/Player.tscn" id="1_qbsmt"]
-[ext_resource type="Texture2D" uid="uid://bd3jg5xsw3ei0" path="res://sprites/map.png" id="2_cpr0p"]
-[ext_resource type="Script" uid="uid://cadxiqjpjjwf2" path="res://scripts/button.gd" id="5_aug50"]
-[ext_resource type="Texture2D" uid="uid://c7m1sykmw0213" path="res://sprites/level-bar.png" id="5_kiw3p"]
-[ext_resource type="Texture2D" uid="uid://cdk6jlqifo57s" path="res://sprites/level-bar-progress.png" id="6_400sg"]
-[ext_resource type="Script" uid="uid://chgpfk08uqsqa" path="res://scripts/managers/level_manager.gd" id="7_400sg"]
-[ext_resource type="Script" uid="uid://caq4gg3abouij" path="res://scripts/managers/enemy_manager.gd" id="8_gee14"]
+[ext_resource type="Texture2D" uid="uid://bd3jg5xsw3ei0" path="res://sprites/map.png" id="1_d1ka7"]
+[ext_resource type="PackedScene" uid="uid://w1a1jo5wmw3o" path="res://scenes/Player.tscn" id="2_lbjc4"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_400sg"]
-texture = ExtResource("2_cpr0p")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbjc4"]
+texture = ExtResource("1_d1ka7")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -54,11 +48,11 @@ texture = ExtResource("2_cpr0p")
 4:5/0 = 0
 5:5/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_lnu2h"]
-sources/0 = SubResource("TileSetAtlasSource_400sg")
+[sub_resource type="TileSet" id="TileSet_u41lx"]
+sources/0 = SubResource("TileSetAtlasSource_lbjc4")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g4kob"]
-texture = ExtResource("2_cpr0p")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7b718"]
+texture = ExtResource("1_d1ka7")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(4.8, 8, 1.6, 8, 1.6, -1.6, 8, -8, 8, 4.8)
 1:0/0 = 0
@@ -122,130 +116,32 @@ texture = ExtResource("2_cpr0p")
 8:3/0/y_sort_origin = 10
 8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.42857, 10.2857, 3.42857, 10.2857, 3.42857, 12.5714, -3.42857, 12.5714)
 
-[sub_resource type="TileSet" id="TileSet_iywne"]
+[sub_resource type="TileSet" id="TileSet_h6mmp"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_g4kob")
+sources/0 = SubResource("TileSetAtlasSource_7b718")
 
-[node name="Game" type="Node2D"]
-script = ExtResource("1_kiw3p")
+[node name="Demo Info scene" type="Node2D"]
 
 [node name="Map" type="Node2D" parent="."]
 position = Vector2(98, 66)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Map"]
 tile_map_data = PackedByteArray("AAD9//7/AAAEAAEAAAD9////AAAEAAEAAAD+//7/AAAEAAEAAAD+////AAAEAAEAAAD9/wAAAAAEAAEAAAD9/wEAAAAEAAEAAAD+/wAAAAAEAAEAAAD+/wEAAAAEAAEAAAD9/wIAAAAEAAEAAAD+/wIAAAAEAAEAAAD///7/AAAEAAEAAAD/////AAAEAAEAAAAAAP7/AAAEAAEAAAAAAP//AAAEAAEAAAD//wAAAAAEAAEAAAD//wEAAAAEAAEAAAAAAAAAAAAEAAEAAAAAAAEAAAAEAAEAAAD//wIAAAAEAAEAAAAAAAIAAAAEAAEAAAABAP7/AAAEAAEAAAABAP//AAAEAAEAAAACAP7/AAAEAAEAAAACAP//AAAEAAEAAAABAAAAAAAEAAEAAAABAAEAAAAEAAEAAAACAAAAAAAEAAEAAAACAAEAAAAEAAEAAAABAAIAAAAEAAEAAAACAAIAAAAEAAEAAAADAP7/AAAEAAEAAAADAP//AAAEAAEAAAADAAAAAAAEAAEAAAADAAEAAAAEAAEAAAADAAIAAAAEAAEAAAD8//7/AAAEAAEAAAD8////AAAEAAEAAAD8/wAAAAAEAAEAAAD8/wEAAAAEAAEAAAD8/wIAAAAEAAEAAAD8/wMAAAAEAAEAAAD9/wMAAAAEAAEAAAD+/wMAAAAEAAEAAAD//wMAAAAEAAEAAAAAAAMAAAAEAAEAAAABAAMAAAAEAAEAAAACAAMAAAAEAAEAAAADAAMAAAAEAAEAAAAEAP7/AAAEAAEAAAAEAP//AAAEAAEAAAAEAAAAAAAEAAEAAAAEAAEAAAAEAAEAAAAEAAIAAAAEAAEAAAAEAAMAAAAEAAEAAAD6//z/AAAEAAEAAAD6//3/AAAEAAEAAAD6//7/AAAEAAEAAAD6////AAAEAAEAAAD6/wAAAAAEAAEAAAD6/wEAAAAEAAEAAAD6/wIAAAAEAAEAAAD6/wMAAAAEAAEAAAD7//z/AAAEAAEAAAD7//3/AAAEAAEAAAD7//7/AAAEAAEAAAD7////AAAEAAEAAAD7/wAAAAAEAAEAAAD7/wEAAAAEAAEAAAD7/wIAAAAEAAEAAAD7/wMAAAAEAAEAAAD8//z/AAAEAAEAAAD8//3/AAAEAAEAAAD9//z/AAAEAAEAAAD9//3/AAAEAAEAAAD+//z/AAAEAAEAAAD+//3/AAAEAAEAAAD///z/AAAEAAEAAAD///3/AAAEAAEAAAAAAPz/AAAEAAEAAAAAAP3/AAAEAAEAAAABAPz/AAAEAAEAAAABAP3/AAAEAAEAAAACAPz/AAAEAAEAAAACAP3/AAAEAAEAAAADAPz/AAAEAAEAAAADAP3/AAAEAAEAAAAEAPz/AAAEAAEAAAAEAP3/AAAEAAEAAAAFAPz/AAAEAAEAAAAFAP3/AAAEAAEAAAAFAP7/AAAEAAEAAAAFAP//AAAEAAEAAAAFAAAAAAAEAAEAAAAFAAEAAAAEAAEAAAAFAAIAAAAEAAEAAAAFAAMAAAAEAAEAAAD6//v/AAAEAAAAAAD7//v/AAAEAAAAAAD8//v/AAAEAAAAAAD9//v/AAAEAAAAAAD+//v/AAAEAAAAAAD///v/AAAEAAAAAAAAAPv/AAAEAAAAAAABAPv/AAAEAAAAAAACAPv/AAAEAAAAAAADAPv/AAAEAAAAAAAEAPv/AAAEAAAAAAAFAPv/AAAEAAAAAAD5//v/AAADAAAAAAAGAPv/AAAEAAAAAAAGAAQAAAAEAAEAAAD5/wQAAAADAAEAAAD6/wQAAAAEAAEAAAD7/wQAAAAEAAEAAAD8/wQAAAAEAAEAAAD9/wQAAAAEAAEAAAD+/wQAAAAEAAEAAAD//wQAAAAEAAEAAAAAAAQAAAAEAAEAAAABAAQAAAAEAAEAAAACAAQAAAAEAAEAAAADAAQAAAAEAAEAAAAEAAQAAAAEAAEAAAAFAAQAAAAEAAEAAAAGAPz/AAAEAAEAAAAGAP3/AAAEAAEAAAAGAP7/AAAEAAEAAAAGAP//AAAEAAEAAAAGAAAAAAAEAAEAAAAGAAEAAAAEAAEAAAAGAAIAAAAEAAEAAAAGAAMAAAAEAAEAAAD5//z/AAADAAEAAAD5//3/AAADAAEAAAD5//7/AAADAAEAAAD5////AAADAAEAAAD5/wAAAAADAAEAAAD5/wEAAAADAAEAAAD5/wIAAAADAAEAAAD5/wMAAAADAAEAAAAHAAMAAAAEAAEAAAAHAAIAAAAEAAEAAAAHAAEAAAAEAAEAAAAHAAAAAAAEAAEAAAAHAP//AAAEAAEAAAAHAP7/AAAEAAEAAAAHAP3/AAAEAAEAAAAHAPz/AAAEAAEAAAAIAPz/AAAEAAEAAAAIAP3/AAAEAAEAAAAIAP7/AAAEAAEAAAAIAP//AAAEAAEAAAAIAAAAAAAEAAEAAAAIAAEAAAAEAAEAAAAIAAIAAAAEAAEAAAAIAAMAAAAEAAEAAAAIAAQAAAAEAAEAAAAHAAQAAAAEAAEAAAAJAPz/AAAEAAEAAAAJAP3/AAAEAAEAAAAJAP7/AAAEAAEAAAAJAP//AAAEAAEAAAAJAAAAAAAEAAEAAAAJAAEAAAAEAAEAAAAJAAIAAAAEAAEAAAAJAAMAAAAEAAEAAAAJAAQAAAAEAAEAAAAJAAUAAAAEAAEAAAAIAAUAAAAEAAEAAAAHAAUAAAAEAAEAAAAGAAUAAAAEAAEAAAAFAAUAAAAEAAEAAAAEAAUAAAAEAAEAAAADAAUAAAAEAAEAAAACAAUAAAAEAAEAAAABAAUAAAAEAAEAAAAAAAUAAAAEAAEAAAD//wUAAAAEAAEAAAD+/wUAAAAEAAEAAAD9/wUAAAAEAAEAAAD8/wUAAAAEAAEAAAD7/wUAAAAEAAEAAAD6/wUAAAAEAAEAAAD6/wYAAAAEAAIAAAD7/wYAAAAEAAIAAAD8/wYAAAAEAAIAAAD9/wYAAAAEAAIAAAD+/wYAAAAEAAIAAAD//wYAAAAEAAIAAAAAAAYAAAAEAAIAAAABAAYAAAAEAAIAAAACAAYAAAAEAAIAAAADAAYAAAAEAAIAAAAEAAYAAAAEAAIAAAAFAAYAAAAEAAIAAAAGAAYAAAAEAAIAAAAHAAYAAAAEAAIAAAAIAAYAAAAEAAIAAAAJAAYAAAAEAAIAAAAKAAUAAAAFAAEAAAAKAAQAAAAFAAEAAAAKAAMAAAAFAAEAAAAKAAIAAAAFAAEAAAAKAAEAAAAFAAEAAAAKAAAAAAAFAAEAAAAKAP//AAAFAAEAAAAKAP7/AAAFAAEAAAAKAP3/AAAFAAEAAAAKAPz/AAAFAAEAAAAHAPv/AAAEAAAAAAAIAPv/AAAEAAAAAAAJAPv/AAAEAAAAAAD5/wUAAAADAAEAAAD5/wYAAAADAAIAAAAKAAYAAAAFAAIAAAAKAPv/AAAFAAAAAAA=")
-tile_set = SubResource("TileSet_lnu2h")
+tile_set = SubResource("TileSet_u41lx")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="Map"]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD9//v/AAABAAAAAAD+//v/AAABAAAAAAD///v/AAABAAAAAAAAAPv/AAABAAAAAAABAPv/AAABAAAAAAACAPv/AAABAAAAAAADAPv/AAABAAAAAAAEAPv/AAABAAAAAAAFAPv/AAABAAAAAAD6//v/AAABAAAAAAD7//v/AAABAAAAAAD8//v/AAABAAAAAAD5//v/AAAAAAAAAAD5//z/AAAAAAEAAAD5//3/AAAAAAEAAAD5//7/AAAAAAEAAAD5////AAAAAAEAAAD5/wAAAAAAAAEAAAD5/wEAAAAAAAEAAAD5/wIAAAAAAAEAAAD5/wMAAAAAAAEAAAD5/wQAAAAAAAEAAAD5/wUAAAAAAAEAAAAGAPv/AAABAAAAAAAHAPv/AAABAAAAAAAIAPv/AAABAAAAAAAJAPv/AAABAAAAAAAKAPv/AAACAAAAAAAKAPz/AAACAAEAAAAKAP3/AAACAAEAAAAKAP7/AAACAAEAAAAKAP//AAACAAEAAAAKAAAAAAACAAEAAAAKAAEAAAACAAEAAAAKAAIAAAACAAEAAAAKAAMAAAACAAEAAAAKAAQAAAACAAEAAAAKAAUAAAACAAEAAAAKAAYAAAACAAIAAAAJAAYAAAABAAIAAAAIAAYAAAABAAIAAAAHAAYAAAABAAIAAAAGAAYAAAABAAIAAAAFAAYAAAABAAIAAAAEAAYAAAABAAIAAAADAAYAAAABAAIAAAACAAYAAAABAAIAAAABAAYAAAABAAIAAAAAAAYAAAABAAIAAAD//wYAAAABAAIAAAD+/wYAAAABAAIAAAD9/wYAAAABAAIAAAD8/wYAAAABAAIAAAD7/wYAAAABAAIAAAD6/wYAAAABAAIAAAD5/wYAAAAAAAIAAAD//wIAAAAHAAEAAAAEAAEAAAAHAAEAAAD8//3/AAAHAAEAAAD9/wAAAAAHAAEAAAD8/wMAAAAGAAEAAAACAP3/AAAGAAEAAAD+//3/AAAGAAEAAAAEAAIAAAAGAAEAAAAIAP7/AAAGAAEAAAAHAAMAAAAGAAEAAAD//wMAAAAGAAEAAAAFAAAAAAAGAAEAAAD//wUAAAAGAAEAAAAHAAUAAAAGAAEAAAD8/wAAAAAGAAEAAAAFAPz/AAAGAAEAAAAIAAEAAAAHAAEAAAAHAPz/AAAHAAEAAAD7/wQAAAAHAAEAAAD6/wEAAAAHAAEAAAABAAQAAAAHAAEAAAAHAAQAAAAHAAEAAAAJAAEAAAAHAAEAAAAFAP//AAAHAAEAAAAGAP//AAAHAAEAAAAGAP7/AAAHAAEAAAAFAP7/AAAHAAEAAAACAPz/AAAHAAEAAAADAAAAAAAIAAAAAAABAP//AAAIAAAAAAAAAAEAAAAIAAAAAAA=")
-tile_set = SubResource("TileSet_iywne")
+tile_set = SubResource("TileSet_h6mmp")
 
-[node name="Bullets" type="Node2D" parent="."]
-
-[node name="Exp Orbs" type="Node2D" parent="."]
-
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_qbsmt")]
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("2_lbjc4")]
 position = Vector2(130, 95)
-stats = {
-"attack_cd": 2.0,
-"bullet_speed": 50,
-"damage": 34,
-"health": 10,
-"movement_speed": 30.0
-}
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -13)
-zoom = Vector2(4.5, 4.5)
-limit_left = -4
-limit_top = -14
-limit_right = 264
-limit_bottom = 168
+zoom = Vector2(6, 6)
+limit_left = -5
+limit_top = -5
+limit_right = 265
+limit_bottom = 170
 limit_smoothed = true
 position_smoothing_enabled = true
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Experience Bar" type="TextureProgressBar" parent="UI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -49.0
-offset_top = -1.0
-offset_right = 49.0
-offset_bottom = 11.0
-grow_horizontal = 2
-scale = Vector2(5, 5)
-pivot_offset = Vector2(49, 6)
-texture_under = ExtResource("5_kiw3p")
-texture_progress = ExtResource("6_400sg")
-
-[node name="Level Text" type="RichTextLabel" parent="UI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -68.0
-offset_top = 31.0
-offset_right = 4.0
-offset_bottom = 56.0
-grow_horizontal = 2
-scale = Vector2(2.01, 2.01)
-text = "Level: 1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Info mode" type="Node" parent="UI"]
-
-[node name="ColorRect" type="ColorRect" parent="UI/Info mode"]
-anchors_preset = -1
-anchor_right = 0.998264
-anchor_bottom = 0.996914
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Info mode"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -573.0
-offset_top = -327.0
-offset_right = -285.0
-offset_bottom = -166.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(4, 4)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "GET READY
-GAME STARTS SOON"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="debug button" type="Button" parent="UI"]
-offset_left = 154.0
-offset_top = 14.0
-offset_right = 245.0
-offset_bottom = 45.0
-text = "next wave"
-script = ExtResource("5_aug50")
-
-[node name="Enemies" type="Node2D" parent="."]
-
-[node name="Debug pozycji - do kamery" type="Node2D" parent="."]
-position = Vector2(264, 168)
-
-[node name="Level Manager" type="Node2D" parent="."]
-script = ExtResource("7_400sg")
-
-[node name="Enemy Manager" type="Node2D" parent="."]
-script = ExtResource("8_gee14")
-
-[node name="Wave Timer" type="Timer" parent="Enemy Manager"]
-wait_time = 2.0
-
-[connection signal="died" from="Player" to="." method="_on_player_died"]
-[connection signal="pressed" from="UI/debug button" to="UI/debug button" method="_on_pressed"]
-[connection signal="timeout" from="Enemy Manager/Wave Timer" to="Enemy Manager" method="_on_wave_timer_timeout"]
