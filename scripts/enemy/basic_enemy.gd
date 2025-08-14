@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var health := 100
-@export var damage := 15
+@export var health := 90
+@export var damage := 10
 var exp_value
 signal died(position, exp_value)
 @onready var game_node = get_tree().get_root().get_node("Game")
@@ -20,7 +20,8 @@ func _process(_delta: float) -> void:
 		attack_timer.start()
 
 func _physics_process(_delta: float) -> void:
-	move_and_slide()
+	if !player_in_range:
+		move_and_slide()
 
 func take_damage(amount):
 	health -= amount

@@ -21,10 +21,11 @@ enum EnemyType {
 }
 
 var waves = {
-	1 : {"enemy_count": 5, "spawn_rate": 3.0, "hp_multi": 1},
-	2 : {"enemy_count": 8, "spawn_rate": 2.5, "hp_multi": 1.2},
-	3 : {"enemy_count": 10, "spawn_rate": 2, "hp_multi": 1},
-	4 : {"enemy_count": 15, "spawn_rate": 2, "hp_multi": 0.5}
+	1 : {"enemy_count": 8, "spawn_rate": 2, "hp_multi": 1},
+	2 : {"enemy_count": 12, "spawn_rate": 2, "hp_multi": 1},
+	3 : {"enemy_count": 16, "spawn_rate": 2, "hp_multi": 1},
+	4 : {"enemy_count": 20, "spawn_rate": 2, "hp_multi": 1},
+	5 : {"enemy_count": 1, "spawn_rate": 6, "hp_multi": 1}
 }
 
 const ENEMY_SCENES = {

@@ -48,9 +48,9 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_faa20"]
 
 [node name="Red Enemy" type="CharacterBody2D" groups=["Enemy"]]
-collision_layer = 3
 collision_mask = 2
 script = ExtResource("1_faa20")
+damage = 30
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5gmkd")
@@ -69,6 +69,7 @@ metadata/_custom_type_script = "uid://c63igvekm3rq2"
 [node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("3_f3bb0")
 enemy = NodePath("../..")
+movement_speed = 10
 metadata/_custom_type_script = "uid://cowglthms56m3"
 
 [node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]

@@ -4,7 +4,7 @@ var data = {
 	1 : {
 		"text" : "You have 10% more attack speed",
 		"stat" : "attack_cd",
-		"multiplier" : 0.9
+		"multiplier" : 0.85
 	},
 	2 : {
 		"text" : "You have 20% more damage",
@@ -14,7 +14,7 @@ var data = {
 	3 : {
 		"text" : "You have 20% more movement speed",
 		"stat" : "movement_speed",
-		"multiplier" : 1.2
+		"multiplier" : 1.15
 	},
 	4 : {
 		"text" : "You have 20% more bullet speed",

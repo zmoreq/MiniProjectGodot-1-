@@ -123,7 +123,7 @@ texture = ExtResource("2_cpr0p")
 8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.42857, 10.2857, 3.42857, 10.2857, 3.42857, 12.5714, -3.42857, 12.5714)
 
 [sub_resource type="TileSet" id="TileSet_iywne"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_g4kob")
 
 [node name="Game" type="Node2D"]
@@ -147,13 +147,7 @@ tile_set = SubResource("TileSet_iywne")
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("1_qbsmt")]
 position = Vector2(130, 95)
-stats = {
-"attack_cd": 2.0,
-"bullet_speed": 50,
-"damage": 34,
-"health": 10,
-"movement_speed": 30.0
-}
+collision_mask = 2
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -13)
@@ -180,6 +174,7 @@ scale = Vector2(5, 5)
 pivot_offset = Vector2(49, 6)
 texture_under = ExtResource("5_kiw3p")
 texture_progress = ExtResource("6_400sg")
+metadata/_edit_use_anchors_ = true
 
 [node name="Level Text" type="RichTextLabel" parent="UI"]
 anchors_preset = 5
@@ -194,6 +189,7 @@ scale = Vector2(2.01, 2.01)
 text = "Level: 1"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Info mode" type="Node" parent="UI"]
 
@@ -224,6 +220,18 @@ GAME STARTS SOON"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Stats" type="RichTextLabel" parent="UI/Info mode"]
+offset_top = 83.0
+offset_right = 211.0
+offset_bottom = 216.0
+text = "---- Stats ----
+dmg: 30
+cd: 2
+movement_speed: 50"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="debug button" type="Button" parent="UI"]
 offset_left = 154.0
 offset_top = 14.0
@@ -248,4 +256,5 @@ wait_time = 2.0
 
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="pressed" from="UI/debug button" to="UI/debug button" method="_on_pressed"]
+[connection signal="lvled_up" from="Level Manager" to="Player" method="_on_level_manager_lvled_up"]
 [connection signal="timeout" from="Enemy Manager/Wave Timer" to="Enemy Manager" method="_on_wave_timer_timeout"]

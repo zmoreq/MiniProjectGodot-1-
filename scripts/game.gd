@@ -27,7 +27,6 @@ func _show_pause_menu():
 	var menu = pause_menu.instantiate()
 	esc_menu = menu
 	add_child(menu)
-	get_tree().paused = true #wymaga naprawienia 
 	
 func _close_pause_menu(menu):
 	menu.queue_free()

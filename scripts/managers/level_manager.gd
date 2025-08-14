@@ -11,10 +11,26 @@ const EXP_ORB = preload("res://scenes/experience_orb.tscn")
 
 var experience = 0
 var max_experience = 100
+@export var max_experience_levels = {
+	1 : 40,
+	2 : 80,
+	3 : 100,
+	4 : 100,
+	5 : 100,
+	6 : 100,
+	7 : 100,
+	8 : 100,
+	9 : 100,
+	10 : 140,
+	11 : 180,
+	12 : 200,
+	13 : 1000
+}
 var level = 1
-var experience_bar: TextureProgressBar
+@onready var experience_bar: TextureProgressBar = $"../UI/Experience Bar"
 
 signal orbs_can_move
+signal lvled_up
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	enemy_manager.connect("wave_finished", self._on_wave_finished) # Replace with function body.
@@ -24,10 +40,10 @@ func _process(delta: float) -> void:
 	pass
 
 func update_exp(value):
-	experience_bar.value += value
+	experience_bar.value += float(value) / float(max_experience_levels[level]) * float(experience_bar.max_value)
 	experience += value
 	
-	if experience >= max_experience:
+	if experience >= max_experience_levels[level]:
 		level_up()
 
 func _on_enemy_died(position: Vector2, exp_value):
@@ -52,6 +68,7 @@ func level_up():
 	level_text.text = "Level: " + str(level)
 	experience_bar.value = 0
 	experience = 0
+	emit_signal("lvled_up")
 	show_upgrades()
 
 func show_upgrades():
