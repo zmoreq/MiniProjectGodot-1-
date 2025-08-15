@@ -1,0 +1,102 @@
+[gd_scene load_steps=12 format=3 uid="uid://bvobcq4mvd2f7"]
+
+[ext_resource type="Texture2D" uid="uid://chmjjep00ttx3" path="res://sprites/boss.png" id="1_5xr4n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xu5hf"]
+atlas = ExtResource("1_5xr4n")
+region = Rect2(0, 0, 64, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lq6pu"]
+atlas = ExtResource("1_5xr4n")
+region = Rect2(64, 0, 64, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdlgx"]
+atlas = ExtResource("1_5xr4n")
+region = Rect2(128, 0, 64, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lujot"]
+atlas = ExtResource("1_5xr4n")
+region = Rect2(192, 0, 64, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxn6j"]
+atlas = ExtResource("1_5xr4n")
+region = Rect2(256, 0, 64, 71)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ofvn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xu5hf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lq6pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdlgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lujot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxn6j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5xr4n"]
+radius = 11.0
+height = 56.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xu5hf"]
+radius = 27.0
+height = 86.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xr4n"]
+bg_color = Color(1, 0.425788, 0.357085, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu5hf"]
+bg_color = Color(0.6, 1, 0.6, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="Enemy Boss" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1ofvn")
+autoplay = "default"
+frame_progress = 0.485708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 17)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_5xr4n")
+
+[node name="Attacks" type="Node" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Attacks"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/Area2D"]
+position = Vector2(0, 17)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_xu5hf")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -51.0
+offset_top = -44.0
+offset_right = 85.0
+offset_bottom = -25.0
+scale = Vector2(0.75, 0.75)
+theme_override_styles/background = SubResource("StyleBoxFlat_5xr4n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xu5hf")
+value = 66.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
