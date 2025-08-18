@@ -40,6 +40,7 @@ layout_mode = 2
 texture_normal = ExtResource("1_gchx3")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Exit Button"]
+layout_mode = 0
 offset_right = 103.0
 offset_bottom = 28.0
 scale = Vector2(0.4, 0.4)

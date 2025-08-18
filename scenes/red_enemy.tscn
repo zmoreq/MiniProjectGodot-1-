@@ -46,11 +46,12 @@ animations = [{
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_faa20"]
+radius = 14.0
 
 [node name="Red Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_mask = 2
 script = ExtResource("1_faa20")
-damage = 30
+damage = 40
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5gmkd")

@@ -1,6 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bvobcq4mvd2f7"]
 
 [ext_resource type="Texture2D" uid="uid://chmjjep00ttx3" path="res://sprites/boss.png" id="1_5xr4n"]
+[ext_resource type="Script" uid="uid://c76useoivya8k" path="res://scripts/enemy/miniboss.gd" id="1_xu5hf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xu5hf"]
 atlas = ExtResource("1_5xr4n")
@@ -49,10 +50,6 @@ animations = [{
 radius = 11.0
 height = 56.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xu5hf"]
-radius = 27.0
-height = 86.0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xr4n"]
 bg_color = Color(1, 0.425788, 0.357085, 1)
 corner_radius_top_left = 30
@@ -68,28 +65,32 @@ corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
-[node name="Enemy Boss" type="CharacterBody2D"]
+[node name="MiniBoss" type="CharacterBody2D"]
+script = ExtResource("1_xu5hf")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1, 15)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
+polygon = PackedVector2Array(-8.58307e-06, 4, 1.14441e-05, -5, 120, -30, 120, 30)
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2D"]
+color = Color(1, 0.0392157, 0.027451, 0.415686)
+polygon = PackedVector2Array(-8.58307e-06, 4, 9.53674e-06, -4, 120, -30, 120, 30)
+uv = PackedVector2Array(-24.1644, -35.8167, 547.78, -135.642, 560.749, 139.294)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1ofvn")
 autoplay = "default"
-frame_progress = 0.485708
+frame_progress = 0.91903
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 17)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_5xr4n")
 
-[node name="Attacks" type="Node" parent="."]
-
-[node name="Area2D" type="Area2D" parent="Attacks"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/Area2D"]
-position = Vector2(0, 17)
-rotation = -1.5708
-shape = SubResource("CapsuleShape2D_xu5hf")
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="Health Bar" type="ProgressBar" parent="."]
 offset_left = -51.0
 offset_top = -44.0
 offset_right = 85.0
