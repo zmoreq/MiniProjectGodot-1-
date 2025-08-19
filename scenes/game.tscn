@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bx71ayt52r48c"]
+[gd_scene load_steps=14 format=4 uid="uid://bx71ayt52r48c"]
 
 [ext_resource type="Script" uid="uid://c1hn4bprdnisp" path="res://scripts/game.gd" id="1_kiw3p"]
 [ext_resource type="PackedScene" uid="uid://w1a1jo5wmw3o" path="res://scenes/Player.tscn" id="1_qbsmt"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cdk6jlqifo57s" path="res://sprites/level-bar-progress.png" id="6_400sg"]
 [ext_resource type="Script" uid="uid://chgpfk08uqsqa" path="res://scripts/managers/level_manager.gd" id="7_400sg"]
 [ext_resource type="Script" uid="uid://caq4gg3abouij" path="res://scripts/managers/enemy_manager.gd" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://bvobcq4mvd2f7" path="res://scenes/enemy_boss.tscn" id="9_g4kob"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_400sg"]
 texture = ExtResource("2_cpr0p")
@@ -250,9 +251,14 @@ script = ExtResource("7_400sg")
 
 [node name="Enemy Manager" type="Node2D" parent="."]
 script = ExtResource("8_gee14")
+enabled = false
 
 [node name="Wave Timer" type="Timer" parent="Enemy Manager"]
 wait_time = 2.0
+
+[node name="MiniBoss" parent="." instance=ExtResource("9_g4kob")]
+position = Vector2(129, 73)
+collision_mask = 2
 
 [connection signal="died" from="Player" to="." method="_on_player_died"]
 [connection signal="pressed" from="UI/debug button" to="UI/debug button" method="_on_pressed"]

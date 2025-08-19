@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvobcq4mvd2f7"]
+[gd_scene load_steps=14 format=3 uid="uid://bvobcq4mvd2f7"]
 
 [ext_resource type="Texture2D" uid="uid://chmjjep00ttx3" path="res://sprites/boss.png" id="1_5xr4n"]
 [ext_resource type="Script" uid="uid://c76useoivya8k" path="res://scripts/enemy/miniboss.gd" id="1_xu5hf"]
@@ -65,20 +65,28 @@ corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
-[node name="MiniBoss" type="CharacterBody2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lq6pu"]
+bg_color = Color(0.136826, 0.136826, 0.136826, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bdlgx"]
+bg_color = Color(0, 0.705882, 0.317647, 1)
+
+[node name="MiniBoss" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_xu5hf")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Attack Area" type="Area2D" parent="."]
 position = Vector2(1, 15)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-visible = false
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Attack Area"]
 polygon = PackedVector2Array(-8.58307e-06, 4, 1.14441e-05, -5, 120, -30, 120, 30)
 
-[node name="Polygon2D" type="Polygon2D" parent="Area2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Attack Area"]
 color = Color(1, 0.0392157, 0.027451, 0.415686)
 polygon = PackedVector2Array(-8.58307e-06, 4, 9.53674e-06, -4, 120, -30, 120, 30)
 uv = PackedVector2Array(-24.1644, -35.8167, 547.78, -135.642, 560.749, 139.294)
+
+[node name="Attack 1 Timer" type="Timer" parent="Attack Area"]
+wait_time = 1.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1ofvn")
@@ -101,3 +109,22 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_xu5hf")
 value = 66.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[node name="Cast Bar" type="ProgressBar" parent="."]
+offset_left = -12.0
+offset_top = 20.0
+offset_right = 180.0
+offset_bottom = 47.0
+scale = Vector2(0.125, 0.125)
+theme_override_styles/background = SubResource("StyleBoxFlat_lq6pu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bdlgx")
+show_percentage = false
+
+[node name="Global Cooldown Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="body_entered" from="Attack Area" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="Attack Area" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="Attack Area/Attack 1 Timer" to="." method="_on_attack_1_timer_timeout"]
+[connection signal="timeout" from="Global Cooldown Timer" to="." method="_on_global_cooldown_timer_timeout"]

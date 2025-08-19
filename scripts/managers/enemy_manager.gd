@@ -5,6 +5,7 @@ extends Node
 @onready var wave_timer: Timer = $"Wave Timer"
 @onready var current_wave = 1
 @onready var level_manager: Node2D = $"../Level Manager"
+@export var enabled : bool = true
 
 var current_enemy_count = 0
 var wave_is_alive = true
@@ -35,9 +36,10 @@ const ENEMY_SCENES = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var spawn_rate = waves[current_wave]["spawn_rate"]
-	wave_timer.wait_time = spawn_rate
-	wave_timer.start()
+	if enabled:
+		var spawn_rate = waves[current_wave]["spawn_rate"]
+		wave_timer.wait_time = spawn_rate
+		wave_timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
