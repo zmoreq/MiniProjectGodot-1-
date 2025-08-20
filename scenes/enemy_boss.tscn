@@ -50,20 +50,11 @@ animations = [{
 radius = 11.0
 height = 56.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xr4n"]
-bg_color = Color(1, 0.425788, 0.357085, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-shadow_size = 1
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu5hf"]
-bg_color = Color(0.6, 1, 0.6, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
+bg_color = Color(0.976062, 0.405494, 0.325609, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lujot"]
+bg_color = Color(1.36691e-05, 0.699203, 0.146732, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lq6pu"]
 bg_color = Color(0.136826, 0.136826, 0.136826, 1)
@@ -73,6 +64,11 @@ bg_color = Color(0, 0.705882, 0.317647, 1)
 
 [node name="MiniBoss" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_xu5hf")
+stats = {
+"damage": 30.0,
+"health": 1000.0,
+"max_health": 1000.0
+}
 
 [node name="Attack Area" type="Area2D" parent="."]
 position = Vector2(1, 15)
@@ -81,12 +77,12 @@ position = Vector2(1, 15)
 polygon = PackedVector2Array(-8.58307e-06, 4, 1.14441e-05, -5, 120, -30, 120, 30)
 
 [node name="Polygon2D" type="Polygon2D" parent="Attack Area"]
+visible = false
 color = Color(1, 0.0392157, 0.027451, 0.415686)
 polygon = PackedVector2Array(-8.58307e-06, 4, 9.53674e-06, -4, 120, -30, 120, 30)
 uv = PackedVector2Array(-24.1644, -35.8167, 547.78, -135.642, 560.749, 139.294)
 
 [node name="Attack 1 Timer" type="Timer" parent="Attack Area"]
-wait_time = 1.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1ofvn")
@@ -99,32 +95,35 @@ rotation = -1.5708
 shape = SubResource("CapsuleShape2D_5xr4n")
 
 [node name="Health Bar" type="ProgressBar" parent="."]
-offset_left = -51.0
-offset_top = -44.0
-offset_right = 85.0
-offset_bottom = -25.0
-scale = Vector2(0.75, 0.75)
-theme_override_styles/background = SubResource("StyleBoxFlat_5xr4n")
-theme_override_styles/fill = SubResource("StyleBoxFlat_xu5hf")
-value = 66.0
+offset_left = -21.0
+offset_top = -33.0
+offset_right = 446.0
+offset_bottom = 7.0
+scale = Vector2(0.09, 0.09)
+theme_override_styles/background = SubResource("StyleBoxFlat_xu5hf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lujot")
 show_percentage = false
-metadata/_edit_use_anchors_ = true
 
 [node name="Cast Bar" type="ProgressBar" parent="."]
+visible = false
 offset_left = -12.0
-offset_top = 20.0
+offset_top = 24.0
 offset_right = 180.0
-offset_bottom = 47.0
+offset_bottom = 51.0
 scale = Vector2(0.125, 0.125)
 theme_override_styles/background = SubResource("StyleBoxFlat_lq6pu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_bdlgx")
 show_percentage = false
 
 [node name="Global Cooldown Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
+
+[node name="Attack 2 Timer" type="Timer" parent="."]
+wait_time = 0.5
 
 [connection signal="body_entered" from="Attack Area" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="Attack Area" to="." method="_on_attack_area_body_exited"]
 [connection signal="timeout" from="Attack Area/Attack 1 Timer" to="." method="_on_attack_1_timer_timeout"]
 [connection signal="timeout" from="Global Cooldown Timer" to="." method="_on_global_cooldown_timer_timeout"]
+[connection signal="timeout" from="Attack 2 Timer" to="." method="_on_attack_2_timer_timeout"]

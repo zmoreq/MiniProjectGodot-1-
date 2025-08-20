@@ -7,9 +7,12 @@ extends Node
 @onready var level_manager: Node2D = $"../Level Manager"
 @export var enabled : bool = true
 
+const BOSS = preload("res://scenes/enemy_boss.tscn")
+
 var current_enemy_count = 0
 var wave_is_alive = true
 var wave_finished_emitted := false
+var all_enemies_died : bool = false
 
 signal wave_finished()
 
@@ -68,17 +71,28 @@ func spawn_enemy():
 	current_enemy_count += 1
 
 func next_wave():
-	current_wave += 1
-	print("Next wave - WAVE ", current_wave)
-	var spawn_rate = waves[current_wave]["spawn_rate"]
-	wave_timer.wait_time = spawn_rate
-	wave_timer.start()
-	wave_is_alive = true
-	wave_finished_emitted = false
-	
+	if current_wave >= 4:
+			all_enemies_died = true
+			
+	if !all_enemies_died:
+		current_wave += 1
+		print("Next wave - WAVE ", current_wave)
+		var spawn_rate = waves[current_wave]["spawn_rate"]
+		wave_timer.wait_time = spawn_rate
+		wave_timer.start()
+		wave_is_alive = true
+		wave_finished_emitted = false
+	elif all_enemies_died:
+		_spawn_boss()
 
 func _on_wave_timer_timeout() -> void:
 	spawn_enemy() # Replace with function body.
+	
+func _spawn_boss():
+	
+	var boss = BOSS.instantiate()
+	enemy_container.add_child(boss)
+	boss.global_position = Vector2(130, 82) #centre of the map
 	
 func enemies_alive() -> bool:
 	var enemies = enemy_container.get_children()

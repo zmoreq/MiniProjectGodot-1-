@@ -1,19 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://ltms6oowuwr"]
+[gd_scene load_steps=9 format=3 uid="uid://be1h2lggi8v0r"]
 
-[ext_resource type="Script" uid="uid://b7etkr4fbyivi" path="res://scripts/player/features/bullet.gd" id="1_y25gk"]
-[ext_resource type="Texture2D" uid="uid://ceogvo4nt8dk8" path="res://sprites/slimeball.png" id="2_l5glv"]
-[ext_resource type="Texture2D" uid="uid://bhfx18xo037w7" path="res://sprites/bullet-poof.png" id="3_l5glv"]
+[ext_resource type="Script" uid="uid://b6tlwqvpm84pb" path="res://scenes/boss_bullet.gd" id="1_borja"]
+[ext_resource type="Texture2D" uid="uid://ceogvo4nt8dk8" path="res://sprites/slimeball.png" id="2_ejsxv"]
+[ext_resource type="Texture2D" uid="uid://bhfx18xo037w7" path="res://sprites/bullet-poof.png" id="3_4sj7d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y25gk"]
-atlas = ExtResource("2_l5glv")
+atlas = ExtResource("2_ejsxv")
 region = Rect2(0, 0, 6, 6)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eoqba"]
-atlas = ExtResource("3_l5glv")
+atlas = ExtResource("3_4sj7d")
 region = Rect2(0, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qncy5"]
-atlas = ExtResource("3_l5glv")
+atlas = ExtResource("3_4sj7d")
 region = Rect2(8, 0, 8, 8)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l5glv"]
@@ -39,12 +39,14 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y25gk"]
-radius = 3.0
+radius = 4.0
 
 [node name="Bullet" type="Node2D" groups=["Bullet"]]
-script = ExtResource("1_y25gk")
+modulate = Color(1, 0, 0, 1)
+script = ExtResource("1_borja")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_l5glv")
 autoplay = "default"
 
