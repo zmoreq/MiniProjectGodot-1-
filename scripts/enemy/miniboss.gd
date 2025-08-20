@@ -89,6 +89,7 @@ func _on_attack_1_timer_timeout() -> void:
 	times_casted += 1
 	if times_casted >= 3:
 		swap_attack = true
+		times_casted = 0
 	global_cooldown_timer.start()
 
 func _on_attack_2_timer_timeout() -> void:
