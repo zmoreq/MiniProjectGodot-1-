@@ -8,6 +8,10 @@ const pause_menu = preload("res://scenes/pause_screen.tscn")
 @onready var info_text: RichTextLabel = $"UI/Info mode/RichTextLabel"
 @onready var color_rect: ColorRect = $"UI/Info mode/ColorRect"
 
+@export var player : CharacterBody2D
+@export var player_start_position : Vector2
+var boss_died = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_game_init() #na czas testow wylaczone
@@ -17,11 +21,9 @@ func _ready():
 	enemy_manager.max_y = 160
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("pause") && !is_paused:
-		_show_pause_menu()
-	elif Input.is_action_just_pressed("pause") && is_paused:
-		_close_pause_menu(esc_menu)
+func _process(delta: float) -> void:	
+	if boss_died:
+		fade_in_screen_with_text("YOU COMPLETED THIS DEMO!!! GZ", Color(0,0,0.2), Callable(self, "_back_to_menu"))
 
 func _show_pause_menu():
 	var menu = pause_menu.instantiate()
@@ -32,6 +34,31 @@ func _close_pause_menu(menu):
 	menu.queue_free()
 	
 func _game_init():
+	var message = "Welcome to my first small Godot project.\nNothing fancy, but you have to start somewhere!\nEnjoy and get ready!!!"
+	fade_in_screen_with_text(message, Color(0,0,0))
+	
+func _unpause():
+	get_tree().paused = false
+	
+func _on_player_died() -> void:
+	fade_in_screen_with_text("GAME OVER", Color(0.2,0,0), Callable(self, "_back_to_menu"))
+	 # imo do zmiany na klawisz losowy jakis
+	
+func _back_to_menu():
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+
+func fade_in_screen_with_text(message : String, color : Color, callback: Callable = Callable(self, "fade_out_screen")):
+	info_text.text = message
+	get_tree().paused = true
+	
+	var tween = get_tree().create_tween()
+	tween.set_pause_mode(2)
+	tween.tween_property(color_rect, "color", color, 2.0)
+	tween.tween_property(info_text, "modulate:a", 1.0, 2.0)
+	tween.connect("finished", callback)
+
+func fade_out_screen():
+	player.global_position = player_start_position
 	get_tree().paused = true
 	var tween1 = get_tree().create_tween()
 	tween1.set_pause_mode(2)
@@ -41,20 +68,3 @@ func _game_init():
 	var tween2 = get_tree().create_tween()
 	tween2.set_pause_mode(2)
 	tween2.tween_property(info_text, "modulate:a", 0, 4.0)
-	
-func _unpause():
-	get_tree().paused = false
-	
-func _on_player_died() -> void:
-	
-	info_text.text = "GAME OVER"
-	get_tree().paused = true
-	
-	var tween = get_tree().create_tween()
-	tween.set_pause_mode(2)
-	tween.tween_property(color_rect, "color", Color(0.2,0,0), 2.0)
-	tween.tween_property(info_text, "modulate:a", 1.0, 2.0)
-	tween.connect("finished", self._back_to_menu) # imo do zmiany na klaiwsz losowy jakis
-	
-func _back_to_menu():
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")

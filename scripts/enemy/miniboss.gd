@@ -70,6 +70,7 @@ func _cast_bullet_hell():
 func die():
 	is_alive = false
 	emit_signal("boss_died")
+	game_node.boss_died = true
 	queue_free() 
 
 

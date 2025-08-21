@@ -2,7 +2,7 @@ extends Node
 
 var data = {
 	1 : {
-		"text" : "You have 10% more attack speed",
+		"text" : "You have 15% more attack speed",
 		"stat" : "attack_cd",
 		"multiplier" : 0.85
 	},
@@ -12,7 +12,7 @@ var data = {
 		"multiplier" : 1.2
 	},
 	3 : {
-		"text" : "You have 20% more movement speed",
+		"text" : "You have 15% more movement speed",
 		"stat" : "movement_speed",
 		"multiplier" : 1.15
 	},

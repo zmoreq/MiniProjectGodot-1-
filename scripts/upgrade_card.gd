@@ -19,7 +19,7 @@ func set_data():
 	multiplier = data["multiplier"]
 	stat = data["stat"]
 	
-	text_label.text = text + "\n" + stat + " = " + str(multiplier)
+	text_label.text = text
 
 func _on_mouse_entered() -> void:
 	var tween = get_tree().create_tween()

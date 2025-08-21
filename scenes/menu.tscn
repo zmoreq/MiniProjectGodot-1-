@@ -87,7 +87,7 @@ offset_left = 655.0
 offset_top = 108.0
 offset_right = 966.0
 offset_bottom = 486.0
-text = "Demo of my first simple project in Godot — a bullet heaven style game.
+text = "Demo of my first simple project in Godot — a bullet heaven style game. Unfortunately, this game doesn’t have audio and esc
 
 All assets are 100% self-made, no free assets used from the web.
 

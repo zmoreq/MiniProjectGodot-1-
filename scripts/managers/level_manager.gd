@@ -8,6 +8,7 @@ const EXP_ORB = preload("res://scenes/experience_orb.tscn")
 @onready var enemy_manager = game_node.get_node("Enemy Manager")
 @onready var level_text: RichTextLabel = game_node.get_node("UI").get_node("Level Text")
 @onready var player : CharacterBody2D = game_node.get_node("Player")
+@onready var level_timer: Timer = $"Level Timer"
 
 var experience = 0
 var max_experience = 100
@@ -27,6 +28,7 @@ var max_experience = 100
 	13 : 1000
 }
 var level = 1
+var is_all_done = false
 @onready var experience_bar: TextureProgressBar = $"../UI/Experience Bar"
 
 signal orbs_can_move
@@ -37,7 +39,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if is_all_done:
+		enemy_manager.next_wave()
+		is_all_done = false
+		level_timer.stop()
 
 func update_exp(value):
 	experience_bar.value += float(value) / float(max_experience_levels[level]) * float(experience_bar.max_value)
@@ -55,12 +60,11 @@ func _on_enemy_died(position: Vector2, exp_value):
 	exp_orb.connect("exp_collected", self._on_orb_collected)
 	
 func _on_orb_collected(exp_value):
-	print("Zebralem orba ", exp_value)
 	update_exp(exp_value)
 	
 func _on_wave_finished():
-	print("Widze ze wave sie skonczyl!!!")
 	emit_signal("orbs_can_move")
+	level_timer.start()
 	
 func level_up():
 	get_tree().paused = true
@@ -95,5 +99,6 @@ func unpause(upgrade_screen):
 
 func _add_stat(stat_name, multiplier):
 	player.apply_stat_change(stat_name, multiplier)
-	print("level manager dodal")
 	
+func _on_level_timer_timeout() -> void:
+	is_all_done = true # Replace with function body.

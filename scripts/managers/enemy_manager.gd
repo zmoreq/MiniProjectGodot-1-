@@ -13,7 +13,6 @@ var current_enemy_count = 0
 var wave_is_alive = true
 var wave_finished_emitted := false
 var all_enemies_died : bool = false
-
 signal wave_finished()
 
 var max_y
@@ -24,6 +23,7 @@ enum EnemyType {
 	BLUE
 }
 
+@export var max_wave = 4
 var waves = {
 	1 : {"enemy_count": 8, "spawn_rate": 2, "hp_multi": 1},
 	2 : {"enemy_count": 12, "spawn_rate": 2, "hp_multi": 1},
@@ -71,28 +71,29 @@ func spawn_enemy():
 	current_enemy_count += 1
 
 func next_wave():
-	if current_wave >= 4:
+	if current_wave >= max_wave:
 			all_enemies_died = true
 			
 	if !all_enemies_died:
 		current_wave += 1
-		print("Next wave - WAVE ", current_wave)
+		game_node.fade_in_screen_with_text("WAVE " + str(current_wave), Color(0,0,0))
 		var spawn_rate = waves[current_wave]["spawn_rate"]
 		wave_timer.wait_time = spawn_rate
 		wave_timer.start()
 		wave_is_alive = true
 		wave_finished_emitted = false
+		
 	elif all_enemies_died:
-		_spawn_boss()
+		game_node.fade_in_screen_with_text("BOSS FIGHT!!!", Color(0,0.2,0), Callable(self, "_spawn_boss"))
 
 func _on_wave_timer_timeout() -> void:
 	spawn_enemy() # Replace with function body.
 	
 func _spawn_boss():
-	
 	var boss = BOSS.instantiate()
 	enemy_container.add_child(boss)
 	boss.global_position = Vector2(130, 82) #centre of the map
+	game_node.fade_out_screen()
 	
 func enemies_alive() -> bool:
 	var enemies = enemy_container.get_children()

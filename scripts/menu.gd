@@ -9,7 +9,7 @@ var start_scale = Vector2(1.0, 1.0)
 func _ready() -> void:
 	get_tree().paused = false
 	var tween = get_tree().create_tween()
-	tween.tween_property(alpha_rect, "color:a", 0, 1.0 )
+	tween.tween_property(alpha_rect, "color:a", 0, 3.0 )
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

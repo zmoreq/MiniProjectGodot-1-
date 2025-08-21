@@ -13,7 +13,8 @@ config_version=5
 config/name="SmallGodotProject"
 run/main_scene="uid://ci7ab7f5g7r66"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://bfmnlyk3mkb5r"
+config/windows_native_icon="uid://bfmnlyk3mkb5r"
 
 [autoload]
 
@@ -21,7 +22,11 @@ UpgradesData="*res://scripts/upgrades_data.gd"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/mode=3
 window/size/borderless=true
+window/stretch/mode="viewport"
 mouse_cursor/custom_image="uid://8cmcfcl3apsu"
 
 [file_customization]
